@@ -1,6 +1,5 @@
 import Countdown from "./Countdown";
 import "../../css/styles/newItemsSkeleton.css";
-import { Link } from "react-router-dom";
 
 function ItemSkeleton({ item, wrapperClass = "", wrapperStyle = {} }) {
   return (
@@ -18,7 +17,7 @@ function ItemSkeleton({ item, wrapperClass = "", wrapperStyle = {} }) {
                 <button>Buy Now</button>
                 <div className="nft__item_share">
                   <h4>Share</h4>
-                  <Link href="" target="_blank" rel="noreferrer">
+                  {/* <Link href="" target="_blank" rel="noreferrer">
                     <i className="fa fa-facebook fa-lg"></i>
                   </Link>
                   <Link href="" target="_blank" rel="noreferrer">
@@ -26,7 +25,7 @@ function ItemSkeleton({ item, wrapperClass = "", wrapperStyle = {} }) {
                   </Link>
                   <Link href="">
                     <i className="fa fa-envelope fa-lg"></i>
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>

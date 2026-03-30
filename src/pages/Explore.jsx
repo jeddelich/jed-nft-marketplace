@@ -8,13 +8,6 @@ const Explore = () => {
   const [cardsDisplayed, setCardsDisplayed] = useState(8);
   const [filter, setFilter] = useState("");
 
-  async function requestExploreData() {
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore${filter}`,
-    );
-    setExploreData(data);
-  }
-
   function displayMore(event) {
     event.preventDefault();
     cardsDisplayed < exploreData?.length &&
@@ -27,8 +20,24 @@ const Explore = () => {
   }
 
   useEffect(() => {
+    let isMounted = true;
+
+    async function requestExploreData() {
+      const { data } = await axios.get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore${filter}`,
+      );
+
+      if (isMounted) {
+        setExploreData(data);
+      }
+    }
+
     requestExploreData();
-  }, [setFilter, filter]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [filter]);
 
   return (
     <div id="wrapper">

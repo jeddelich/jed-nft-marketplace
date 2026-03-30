@@ -23,7 +23,7 @@ function ItemCards({ item, author, wrapperClass = "", wrapperStyle = {} }) {
               <button>Buy Now</button>
               <div className="nft__item_share">
                 <h4>Share</h4>
-                <Link href="" target="_blank" rel="noreferrer">
+                {/* <Link href="" target="_blank" rel="noreferrer">
                   <i className="fa fa-facebook fa-lg"></i>
                 </Link>
                 <Link href="" target="_blank" rel="noreferrer">
@@ -31,7 +31,7 @@ function ItemCards({ item, author, wrapperClass = "", wrapperStyle = {} }) {
                 </Link>
                 <Link href="">
                   <i className="fa fa-envelope fa-lg"></i>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
