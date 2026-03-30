@@ -1,38 +1,17 @@
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import { carouselSettings } from "./carouselSettings";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+
+// Custom hooks
+import useSlidesToShow from "../../hooks/useSlidesToShow";
+import useSlickRefresh from "../../hooks/useSlickRefresh";
 
 function Carousel({ hotCollectionsData }) {
   const sliderRef = useRef(null);
-  const [slidesToShow, setSlidesToShow] = useState(4);
+  const slidesToShow = useSlidesToShow();
 
-  useEffect(() => {
-    function updateSlides() {
-      const width = window.innerWidth;
-
-      if (width < 570) setSlidesToShow(1);
-      else if (width < 768) setSlidesToShow(2);
-      else if (width < 1200) setSlidesToShow(3);
-      else setSlidesToShow(4);
-    }
-
-    updateSlides();
-    window.addEventListener("resize", updateSlides);
-
-    return () => window.removeEventListener("resize", updateSlides);
-  }, []);
-
-  useEffect(() => {
-    if (!sliderRef.current) return;
-
-    const timeout = setTimeout(() => {
-      sliderRef.current.slickGoTo(0);
-      sliderRef.current.slickRefresh();
-    }, 100);
-
-    return () => clearTimeout(timeout);
-  }, [slidesToShow]);
+  useSlickRefresh(sliderRef, hotCollectionsData);
 
   return (
     <Slider

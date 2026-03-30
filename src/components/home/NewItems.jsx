@@ -1,12 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Slider from "react-slick";
 import { carouselSettings } from "../UI/carouselSettings";
 import ItemCards from "../UI/ItemCards";
 import ItemSkeleton from "../UI/ItemSkeleton";
 
+// Custom hooks
+import useSlidesToShow from "../../hooks/useSlidesToShow";
+import useSlickRefresh from "../../hooks/useSlickRefresh";
+
 const NewItems = () => {
   const [newItemsData, setNewItemsData] = useState(null);
+
+  const sliderRef = useRef(null);
+  const slidesToShow = useSlidesToShow();
+  useSlickRefresh(sliderRef, newItemsData);
 
   async function requestNewItems() {
     const { data } = await axios.get(
@@ -30,7 +38,7 @@ const NewItems = () => {
             </div>
           </div>
           {newItemsData ? (
-            <Slider {...carouselSettings}>
+            <Slider ref={sliderRef} {...carouselSettings} slidesToShow={slidesToShow} infinite={newItemsData.length > slidesToShow}>
               {newItemsData.map((item) => (<ItemCards key={item.id} item={item} />))}
             </Slider>
           ) : (
