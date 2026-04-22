@@ -1,31 +1,30 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SubHeader from "../images/subheader.webp";
 import ExploreItems from "../components/explore/ExploreItems";
-import axios from "axios";
 
 const Explore = () => {
   const [exploreData, setExploreData] = useState(null);
   const [cardsDisplayed, setCardsDisplayed] = useState(8);
   const [filter, setFilter] = useState("");
 
-  function displayMore(event) {
+  const displayMore = useCallback((event) => {
     event.preventDefault();
     cardsDisplayed < exploreData?.length &&
       setCardsDisplayed(cardsDisplayed + 4);
-  }
+  }, [cardsDisplayed, exploreData]);
 
-  function changeFilter(event) {
-    setExploreData(null);
+  const changeFilter = useCallback((event) => {
     setFilter("?filter=" + event.target.value);
-  }
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
 
     async function requestExploreData() {
-      const { data } = await axios.get(
+      const response = await fetch(
         `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore${filter}`,
       );
+      const data = await response.json();
 
       if (isMounted) {
         setExploreData(data);

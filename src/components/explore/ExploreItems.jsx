@@ -18,7 +18,7 @@ const ExploreItems = ({
 
   return (
     <>
-      <div data-aos="fade-in" data-aos-duration="1000" data-aos-delay="200" data-aos-once="true" data-aos-offset="0">
+      <div data-aos="fade-in" data-aos-duration="1000" data-aos-once="true" data-aos-offset="0">
         <select id="filter-items" defaultValue="" onChange={changeFilter}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
@@ -31,7 +31,7 @@ const ExploreItems = ({
           .slice(0, cardsDisplayed)
           .map((item, index) => (
             <ItemCards
-              key={index}
+              key={item.nftId}
               item={item}
               wrapperClass="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12 w-full"
               wrapperStyle={{ display: "block", backgroundSize: "cover" }}

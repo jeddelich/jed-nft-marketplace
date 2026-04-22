@@ -3,7 +3,7 @@ import Countdown from "./Countdown";
 
 function ItemCards({ item, author, wrapperClass = "", wrapperStyle = {} }) {
   return (
-    <div className={wrapperClass} style={wrapperStyle} data-aos="fade-in" data-aos-duration="1000" data-aos-delay="200" data-aos-once="true" data-aos-offset="0">
+    <div className={wrapperClass} style={wrapperStyle} data-aos="fade-in" data-aos-duration="1000" data-aos-once="true" data-aos-offset="0">
       <div className="nft__item mx-1">
         <div className="author_list_pp">
           <Link
@@ -12,7 +12,7 @@ function ItemCards({ item, author, wrapperClass = "", wrapperStyle = {} }) {
             data-bs-placement="top"
             title="Creator: Monica Lucas"
           >
-            <img className="lazy" src={item.authorImage || author.authorImage} alt="" />
+            <img className="lazy" src={item.authorImage || author.authorImage} width="50" height="50" alt="" />
             <i className="fa fa-check"></i>
           </Link>
         </div>
@@ -40,6 +40,8 @@ function ItemCards({ item, author, wrapperClass = "", wrapperStyle = {} }) {
             <img
               src={item.nftImage}
               className="lazy nft__item_preview"
+              width="350"
+              height="350"
               alt=""
             />
           </Link>
